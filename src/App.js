@@ -1,7 +1,8 @@
+import { useState } from "react";
 import PhotoWall from "./components/PhotoWall";
 import Title from "./components/Title";
 
-const posts = [
+const postList = [
   {
     id: "0",
     description: "Pansy flower",
@@ -11,20 +12,29 @@ const posts = [
   {
     id: "1",
     description: "Bulguksa Lake scenery",
-    imageLink: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Bulguksa_Lake_scenery.jpg",
+    imageLink:
+      "https://upload.wikimedia.org/wikipedia/commons/8/8b/Bulguksa_Lake_scenery.jpg",
   },
   {
     id: "2",
     description: "Rainbow Lorikeets",
-    imageLink: "https://live.staticflickr.com/65535/49808893567_64d0c54217_b.jpg",
+    imageLink:
+      "https://live.staticflickr.com/65535/49808893567_64d0c54217_b.jpg",
   },
 ];
 
 function App() {
+  const [posts, setPosts] = useState(postList);
+
+  const deletePost = (post) => {
+    let updatedPostList = posts.filter((p) => p !== post);
+    setPosts(updatedPostList);
+  };
+
   return (
     <>
       <Title />
-      <PhotoWall posts = {posts}/>
+      <PhotoWall posts={posts} removePost={deletePost} />
     </>
   );
 }

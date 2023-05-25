@@ -1,4 +1,11 @@
-function Photo({ post }) {
+import PropTypes from "prop-types";
+
+function Photo({ post, onRemovePost }) {
+
+  const removePhotoHandler = () =>{
+    onRemovePost(post);
+  }
+
   return (
     <>
       <figure className="figure">
@@ -7,7 +14,7 @@ function Photo({ post }) {
           <p> {post.description} </p>
         </figcaption>
         <div className="button-container">
-          <button>Remove</button>
+          <button onClick = {removePhotoHandler}>Remove</button>
         </div>
       </figure>
     </>
@@ -15,3 +22,8 @@ function Photo({ post }) {
 }
 
 export default Photo;
+
+Photo.propTypes = {
+  post: PropTypes.object.isRequired,
+  onRemovePost: PropTypes.func.isRequired,
+};
