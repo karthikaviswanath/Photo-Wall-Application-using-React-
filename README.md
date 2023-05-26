@@ -1,3 +1,7 @@
+# Photo Wall Application using React 18.2.0
+
+This is a demo React.js application where users can post new photos with captions, delete existing photo posts, etc
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
