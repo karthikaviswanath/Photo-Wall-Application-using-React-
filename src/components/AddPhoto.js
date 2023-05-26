@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createPost } from "../photoSlice";
 import Title from "./Title";
 
-function AddPhoto({ onAddPhoto }) {
+function AddPhoto() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -12,12 +16,12 @@ function AddPhoto({ onAddPhoto }) {
       imageLink: event.target.elements.url.value,
     };
     console.log(post);
-    onAddPhoto(post);
+    dispatch(createPost(post));
     navigate("..");
   };
   return (
     <>
-      <Title></Title>
+      <Title />
       <form onSubmit={submitHandler}>
         <div className="form">
           <input

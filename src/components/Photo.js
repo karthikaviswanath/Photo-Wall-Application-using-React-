@@ -1,10 +1,13 @@
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { deletePost } from "../photoSlice";
 
-function Photo({ post, onRemovePost }) {
-
-  const removePhotoHandler = () =>{
-    onRemovePost(post);
-  }
+function Photo({ post }) {
+  const dispatch = useDispatch();
+  const removePhotoHandler = () => {
+    console.log(post);
+    dispatch(deletePost(post));
+  };
 
   return (
     <>
@@ -14,7 +17,7 @@ function Photo({ post, onRemovePost }) {
           <p> {post.description} </p>
         </figcaption>
         <div className="button-container">
-          <button onClick = {removePhotoHandler}>Remove</button>
+          <button onClick={removePhotoHandler}>Remove</button>
         </div>
       </figure>
     </>
@@ -25,5 +28,4 @@ export default Photo;
 
 Photo.propTypes = {
   post: PropTypes.object.isRequired,
-  onRemovePost: PropTypes.func.isRequired,
 };

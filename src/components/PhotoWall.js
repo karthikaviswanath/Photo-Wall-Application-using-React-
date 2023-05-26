@@ -1,26 +1,24 @@
 import Photo from "./Photo";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Title from "./Title";
 
-function PhotoWall({ posts, removePost }) {
-  const onAddPostHandler = () => {
-    console.log("add button clicked");
-  };
-
+function PhotoWall() {
+  const posts = useSelector((state) => [...state.photoReducer.value]); //using spread operator because otherwise posts
+  //will be an immutable array and sort cannot be used with that
   return (
     <>
-      <div>
-        <Link to="/AddPhoto" className="addButton" onClick={onAddPostHandler}>
-          Add Photo
-        </Link>
-      </div>
+      <Title />
+      <Link to="/AddPhoto" className="addButton">
+        Add Photo
+      </Link>
       <div className="photoGrid">
         {posts
           .sort(function (x, y) {
             return y.id - x.id; //Sort posts array in descending order
           })
           .map((p) => (
-            <Photo key={p.id} post={p} onRemovePost={removePost} />
+            <Photo key={p.id} post={p} />
           ))}
       </div>
     </>
@@ -28,8 +26,3 @@ function PhotoWall({ posts, removePost }) {
 }
 
 export default PhotoWall;
-
-PhotoWall.propTypes = {
-  posts: PropTypes.array.isRequired,
-  removePost: PropTypes.func.isRequired,
-};
