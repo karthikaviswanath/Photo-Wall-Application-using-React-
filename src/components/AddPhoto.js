@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createPost } from "../photoSlice";
-import Title from "./Title";
+import { createPost } from "../redux/photoSlice";
 
 function AddPhoto() {
   const navigate = useNavigate();
@@ -21,7 +20,6 @@ function AddPhoto() {
   };
   return (
     <>
-      <Title />
       <form onSubmit={submitHandler}>
         <div className="form">
           <input
