@@ -3,12 +3,15 @@ import { useDispatch } from "react-redux";
 import { deletePost } from "../redux/photoSlice";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Photo({ post }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const removePhotoHandler = () => {
     console.log(post);
     dispatch(deletePost(post));
+    navigate("..");
   };
 
   const postComments = useSelector((state) => state.comment.postComments);
